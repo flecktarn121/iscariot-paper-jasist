@@ -1,5 +1,5 @@
 \documentclass{article}
-%\usepackage{apacite}
+\usepackage{apacite}
 \usepackage{listings}
 \usepackage{tikz}
 \usepackage{pgfplots}
@@ -10,6 +10,7 @@
 \usepackage{xcolor}
 \usepackage{cleveref}
 \usepackage{url}
+\usepackage{endnotes}
 
 \definecolor{codegreen}{rgb}{0,0.6,0}
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
@@ -45,6 +46,9 @@
 
 \title{Shape expressions, reification and a precious mule: building digital editions of medieval charters using the semantic web}
 \author{Ángel García Menéndez}
+\author{José Emilio Labra-Gayo}
+\author{Daniel Gayo-Avello}
+\author{Miguel Calleja-Puerta}
 \date{September 2026}
 
 \begin{document}
@@ -55,7 +59,7 @@
 An important contribution of technology to those working with historical texts is the possibility of creating digital editions of those texts and making them available on the internet.
 These editions, in contrast to traditional paper editions, can structure the information so that it can be processed by computers.
 This opens up the possibility of making those editions part of the semantic web ecosystem and aligning them to the Linked Open Data principles.
-To achieve this objective, we propose a methodology to integrate different semantic technologies to produce diplomatic digital editions of medieval charters.
+To achieve this objective, we propose a methodology to integrate different semantic technologies to produce diplomatic digital editions of medieval charters, a type of historical document that offers one of the clearest picture of previous societies.
 Information in those editions will be structured using OWL ontologies, represented with RDF triples to construct a knowledge graph, validated and modeled using Shape Expressions and retrieved with SPARQL queries.
 The most recent advances in semantic web technologies have also been taken into consideration. In particular, RDF 1.2 reification is used to indicate provenance and shape expressions inheritance allows to align the shapes with the classes in the ontology in a precise way.
 To demonstrate the potential of this methodology, we have modeled the archive of notarial deeds from a medieval goldsmith, showing not only that it is feasible but also that it also allows for richer knowledge to be extracted from these editions and, most importantly, to combine them with other data available online.
@@ -73,6 +77,10 @@ Palaeography, for example, has followed its own path towards digitalization,  ra
 That is also the case of diplomatics, another approach to the study of historical texts, which has undergone its own relationship with computers\cite{calleja2023ordenador}\cite{ambrosio:hal-02305765}.
 Not to be confused with diplomacy, both disciplines derive their names from the Greek word \emph{diploma}, diplomatics is the study of the tradition, form and preparation of written acts, with the purpose of criticizing and publishing them, as defined by the Voacabulaire international de la diplomatique\cite{carcel_orti_vocabulaire_1997}.
 
+Charters are legal documents on which an authority performs a legal act, that authority beng a notary registering a contract between two people, a king granting priveleges to a town or a papal edict.
+They offer a key insight onto medieval society, their economic structure, family and personal relations and a good photograph on the structure and inner works of the society itself.
+Therefore, charters represent a very precious source for historical research, and innovations on how the information they contain can be represented, extracted and used is of the upmost importance for the researchers in the field.
+
 One of the ways in which this intersection between the computer and diplomatic research has materialized is the possibility of creating digital diplomatic editions of charters.
 This idea can range from the mere publication of the information online for human consultation (the case of the Digitale Charterbank Nederland\cite{burgers_digitale_2025}) to structured information fit for computer processing.
 Several portals exist that offer this feature, such as Monasterium.net in Austria or the École nationale des chartes in France.
@@ -85,11 +93,11 @@ This is the main point behind Open Data.
 And, to facilitate this endeavour, the World Wide Web Consortium (W3C) recommends in their star tier classification of open data that information should be linked, so that datasets can be easily integrated with each other \cite{berners-lee_linked_nodate}.
 Specifically for digital humanities information, making it findable, descriptive, processable and interoperable is a key part of adding value to the data\cite{jian2026data}.
 However, even though there has been a push by national libraries and archives for marking their data LOD\cite{candela2023lod}, there is still work to be done regarding medieval documents.
-The Medieval Academy of America maintains a curated repository of useful sites for research, most of them containing this kind of sources\footnote{Available here: \url{https://mdr-maa.org/} (Accessed on 2026-07-15)}.
+The Medieval Academy of America maintains a curated repository of useful sites for research, most of them containing this kind of sources\endnote{Available here: \url{https://mdr-maa.org/} (Accessed on 2026-07-15)}.
 Using its filters, it is possible to see that, out of the 251 websites, 43 offer downloadable data of some kind, but only 9 have some kind of LOD feature at the moment of writing.
 Plus, the 4-star tier requires the use of W3C standardized technologies, which is not common in the field of digital diplomatics, dominated by the TEI specification (not a W3C technology).
 Even though there are attempts to combine both approaches\cite{vujosevic_encoding_2026}, there are still plenty of opportunities open to study the application of semantic technologies and knowledge graphs to digital diplomatics,
-in terms of integration with other data and better representation and retrieval of information\cite{garcia-menendez_unlocking_nodate}\cite{burrows_linked_2022}.
+in terms of integration with other data and better representation and retrieval of information\cite{burrows_linked_2022}.
 
 The main contribution of this paper is \textbf{the proposal of an approach for the production of digital diplomatic editions of medieval charters using the range of technologies offered by the semantic web}\cite{merono2015semantic}.
 The rest of the paper is structured as follows: section \ref{related-work} will provide a general overview of the state of the art regarding the publication of medieval manuscripts and the use of the semantic web.
@@ -105,7 +113,7 @@ Nonetheless, CIDOC-CRM is generally the main option\cite{10.1145/3771098}, as it
 It is almost mandatory to talk about the SAMPO model\cite{hyvonen_digital_2023}, which provides an ecosystem to build and exploit knowledge graphs of all kinds, ranging from WWII documentation to legislation \cite{hyvonen-et-al-lawsampo-2021}, parliamentary activity\cite{hyvonen_finnish_2022}, archaeology\cite{rantala-et-al-findsampo-dhnb-2022} and library information\cite{ahola2025booksampo}.
 
 Another group that actively promotes semantic and LOD principles in the humanities is the Pelagios Network, an association of individuals, groups and organizations focusing on producing, sharing and using historical data.
-They have produced tools and methodologies to achieve these goals, as well as endorsing and sponsoring projects in diverse fields, including archaeology, geography or collections\footnote{More information: https://pelagios.org/lod/case-studies}.
+They have produced tools and methodologies to achieve these goals, as well as endorsing and sponsoring projects in diverse fields, including archaeology, geography or collections\endnote{More information: \url{https://pelagios.org/lod/case-studies}}.
 Similarly, the European Union offers the Europeana Portal to serve as a library that aggregates of the common European cultural heritage.
 
 Focusing on medieval manuscripts in particular, there are also many projects that integrate knowledge graphs to work with them.
@@ -117,14 +125,14 @@ Charters can be considered a subset of manuscripts in general, and there are alr
 The NotaryPedia project is one example of this, encoding the deeds present in the national archives of Malta\cite{ellul2019notarypedia}.
 Similarly, the same dataset used in section \ref{use-case} was used to build a KG populated with the information about the legal actions and actors encoded, using a Wikibase instance as a back-end to provide collaborative capabilities\cite{alvarez-fidalgo_mckg_2026}, an approach similar to that of Digital Scriptorium\cite{falafios2023scriptorium}.
 Considering how TEI dominates the landscape in digital editions, attempts have been made at bringing together the markup technology researchers are used to and RDF for linked data, by means of conversions between the two languages\cite{garcia_gonzalez_converting_2020}.
-Another project aimed at exploring the potential of digital technologies is the From Digital to Distant Diplomatics project, whose aim is to increase the accessibility the information of these documents via technological means\footnote{Project's webpage: \url{https://didip.hypotheses.org/}}.
+Another project aimed at exploring the potential of digital technologies is the From Digital to Distant Diplomatics project, whose aim is to increase the accessibility the information of these documents via technological means\endnote{Project's webpage: \url{https://didip.hypotheses.org/}}.
 
 Event though all of these works cover different applications of technology for the study of medieval charters, none of them provides a full integration of the technologies from the semantic web nor a structured methodology for building digital editions.
 
 \section{Methodology}
 \label{methodology}
 
-The proposed methodology for digital diplomatic editions will follow an approach similar to the one proposed by Chloe Shanon\footnote{Source: \url{https://ontologist.substack.com/p/do-you-need-an-upper-ontology}}, who argues for a lesser focus on ontology development and a higher emphasis in RDF reification and the use of shapes to create a data model:
+The proposed methodology for digital diplomatic editions was already presented as a position paper\cite{garcia-menendez_unlocking_nodate}, and follows an approach similar to the one proposed by Chloe Shanon\endnote{Source: \url{https://ontologist.substack.com/p/do-you-need-an-upper-ontology}}, who argues for a lesser focus on ontology development and a higher emphasis in RDF reification and the use of shapes to create a data model:
 \begin{itemize}
     \item Usage of an upper ontology, with extensions, to structure the domain of the problem
     \item RDF, with the reification capabilities of RDF 1.2, to represent the information
@@ -199,14 +207,14 @@ That archive was already analyzed and published in a PhD thesis~\cite{felpeto_cu
 Tags were used to delimit the different elements of the diplomatic analysis in the transcription of the text, and the different actors were identified, along with a brief description of the legal action encoded in each particular document and different pieces of metadata, such as physical information about the original document or relevant locations.
 Nonetheless, much of that information was either expressed as blocks of text in natural language or not linked to any external sources to facilitate its reuse.
 
-That dataset, with permission from its original authors, was manually converted into an RDF-based representation following the methodology proposed in section \ref{methodology}\footnote{To preserve anonymity during peer review, the dataset has been uploaded as a resource in the submission. Upon acceptance, the data will be transitioned to a permanent, citable archive}.
+That dataset, with permission from its original authors, was manually converted into an RDF-based representation following the methodology proposed in section \ref{methodology}.
 The resulting knowledge graph was composed of 24.989 triples and used classes and properties from our custom extension of CIDOC-CRM and CRMtex, alongside some properties and classes borrowed from schema.org (personal information of actors)\cite{guha2016schema}, agrelon (family relations)\cite{litz2012agrelon} and VID (diplomatic elements). References to Wikidata were used to link certain entities or types in general and, in the specific case of locations, references to the Geographic Thesaurus from the Spanish Ministry of Culture (published in SKOS and available through an SPARQL endpoint) were employed.
 
 Three main pieces of information should be encoded per document: the transcription, the diplomatic analysis of the text and the real life information that the document encoded.
 This first element is achieved using a node of type E34 Inscription with a note using the P3 has note property pointing to the whole transcription.
 The analysis of the text, both of its physical characteristics as a manuscript and its diplomatic elements, is modeled using a node of type TX1 Written Text.
 The class Diplomatic Element was added to the ontology, as a child of TX7 Written Text Segment.
-Each of the portions of text that are deemed significant for the analysis are described using a node of this type, plus a reference to the online version of the Vocabulaire international de la diplomatique (VID), published as a thesaurus of terms in SKOS\footnote{Available here: \url{https://www.cei.lmu.de/VID/skos/}}.
+Each of the portions of text that are deemed significant for the analysis are described using a node of this type, plus a reference to the online version of the Vocabulaire international de la diplomatique (VID), published as a thesaurus of terms in SKOS\endnote{Available here: \url{https://www.cei.lmu.de/VID/skos/}}.
 Finally, each document references the Legal Act that it records, for which the various actors are linked, along with the object of the contract and other pieces of information, depending on the specific type of act.
 
 To illustrate this, on appendix \ref{comparison} we can see an extract from file AMSPO\_FSV\_1612.xml.
@@ -239,7 +247,7 @@ Apart from their full name and gender, several other pieces of information about
 Those statements were reified, indicating the source document of that data by means of the source property from the Dublin Core Metadata Terms vocabulary.
 Therefore, any future researcher could, not only check the information of the individual, but also trace back the original text where that information is stated.
 
-To validate the model, as stated in section \ref{methodology}, several competency questions were created along with a team of researchers specialized in historical documents and digital humanities.
+To validate the model, as stated in section \ref{methodology}, several competency questions were created along with the team of researchers of the DocuLab laboratory\endnote{See more: \url{https://doculab.grupos.uniovi.es}}, specialized in historical documents and digital humanities and authors of the original dataset.
 A total of 42 questions were first introduced in natural language and, once the dataset was complete, translated into SPARQL queries.
 The CQ can be divided into 4 categories:
 \begin{itemize}
@@ -392,15 +400,25 @@ Although the decision to develop one from scratch or to adapt some already exist
 Secondly, several tasks involved in the creation of these digital editions can be automated, or at least semi-automated, to some degree.
 Natural Language Processing techniques, including those considered more traditional and the LLM-based, need to be evaluated to find those that may ease the work of historical researchers with these texts.
 
-%\begin{acks}
-%This work has been partially funded by:
-%\begin{itemize}
-%    \item  
-%    \item 
-%    \item 
-%\end{itemize}
-%\end{acks}
+\section*{Funding information}
+This work has been partially funded by:
+\begin{itemize}
+    \item The Principality of Asturias, through project no SEK-25-GRU-GIC-24-089
+    \item The National Research Agency of Spain, through projects 
+    \begin{itemize}
+        \item Shakigra, code NAC-ES-PUB-ASV-2025 PID2024-157010OB-I00
+        \item NotFor II, code MCINN-24-PID2023-146105NB-I00
+    \end{itemize}
+\end{itemize}
   
+\section*{Conflict of interest statement}
+The authors declare no conflict of interest
+
+\section*{Data availability statement}
+The dataset (both in its XML and RDF versons), alongside the OWL ontology, ShEx schema and SPARQL queries, with its results, can be found in the following git repository: \url{https://gitlab.com/flecktarn121/project-iscariot}. 
+Upon acceptance, the data will be transitioned to a permanent, citable archive.
+
+\theendnotes
 \appendix
 \section{Comparison between the TEI-based and the RDF-based representation}
 \label{comparison}
@@ -429,8 +447,9 @@ Natural Language Processing techniques, including those considered more traditio
     \caption{Diagram representing the different nodes in the RDF-based representation of file AMSPO\_FSV\_1612. Blue nodes correspond to the local nodes of the KG. Purple nodes correspond to classes linked to the nodes by means of the rdfs:type property. Clouds represent links to resources from external KG and yellow cards contain the value of literals. The arrows represent the links between nodes by means of triples, with the name of the corresponding property stated.}
 \end{figure}
 
+\pagebreak
 
-\bibliographystyle{plain}
+\bibliographystyle{apacite}
 \bibliography{refs}
 
 \end{document}
